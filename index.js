@@ -1,6 +1,15 @@
-const faker = require('faker');
-const sequelize = require('sequelize');
+const fs = require('fs');
+const {Parser} = require('sql-ddl-to-json-schema');
+const parser = new Parser('mysql');
 
-const {genRefs} = require('./genRefs');
+const {generateData} = require('./lib/genData');
+const {parseSchema} = require('./lib/parseSchema');
 
-console.log(genRefs(5));
+const sql = fs.readFileSync('./db.ddl', 'utf8');
+const json = parser.toCompactJson(parser.feed(sql).results);
+
+parseSchema(json);
+
+const output = json;
+fs.writeFileSync('output/schema.json', JSON.stringify(output));
+// console.log(output);
