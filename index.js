@@ -14,4 +14,4 @@ const parsedSchema = parseSchema(json);
 const jsonData = generateData(parsedSchema, maxNumber);
 
 const output = jsonData;
-fs.writeFileSync('schema.json', JSON.stringify(output));
+fs.writeFileSync('output/schema.json', JSON.stringify(output));
