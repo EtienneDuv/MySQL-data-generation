@@ -7,7 +7,7 @@ const {generateData} = require('./lib/genData');
 const {generateSql} = require('./lib/genSql');
 const maxNumber = 50;
 
-const sql = fs.readFileSync('./db.dll', 'utf8');
+const sql = fs.readFileSync('./db.ddl', 'utf8');
 
 const json = parser.toCompactJson(parser.feed(sql).results);
 
